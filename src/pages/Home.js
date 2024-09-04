@@ -1,12 +1,14 @@
-import Editor from "../component/Editor.js";
+import Button from '../component/Button.js';
+import Editor from '../component/Editor.js';
+import Header from '../component/Header.js';
 
 const Home = () => {
   return (
     <div>
-      <Editor
-        onSubmit={() => {
-          alert("작성완료클릭");
-        }}
+      <Header
+        title={'2024년 n월'}
+        leftChild={<Button text={'<'} />}
+        rightChild={<Button text={'>'} />}
       />
     </div>
   );

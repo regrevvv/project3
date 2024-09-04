@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getFormattedDate, emotionList } from '../util';
 import Button from './Button';
@@ -38,6 +38,16 @@ const Editor = ({ initData, onSubmit }) => {
   const handleChangeEmotion = (emotionId) => {
     setState({ ...state, emotionId });
   };
+
+  useEffect(() => {
+    if (initData) {
+      setState({
+        ...initData,
+        date: getFormattedDate(new Date(parseInt(initData.date))),
+      });
+    }
+  }, [initData]);
+
   return (
     <div className="Editor">
       <div className="editor_section">
@@ -54,6 +64,7 @@ const Editor = ({ initData, onSubmit }) => {
               {...it}
               onClick={handleChangeEmotion}
               isSelected={state.emotionId === it.id}
+              key={it.id}
             />
           ))}
         </div>
